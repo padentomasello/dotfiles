@@ -1,6 +1,6 @@
 [user]
 	name = Paden Tomasello
-	email = padent@berkeley.edu
+	email = paden@graphistry.com
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
