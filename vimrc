@@ -2,7 +2,6 @@
 syntax on
 set ruler
 set ls=2 " Show status line even with only one window is show
-set relativenumber
 set bs=2
 set number
 set expandtab " Inset space characters for tab
@@ -13,19 +12,15 @@ set foldmethod=syntax
 set foldnestmax=3
 filetype off                  " required
 
-nnoremap <F3> :NumbersToggle<CR>
-nnoremap <F4> :NumbersOnOff<CR>
-
-set clipboard=unnamed
+set relativenumber
+set number
 
 
 "specific filetype
 au BufRead,BufNewFile *.cl setfiletype c
 
-
 set t_Co=256
 set background=dark
-
 
 set nocompatible
 let mapleader=','
@@ -40,17 +35,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-""""""""""""""""""""""""""""""""""""""""""
-" tabular
-""""""""""""""""""""""""""""""""""""""""""
-Plugin 'godlygeek/tabular'
-if exists(":Tabularize")
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a: :Tabularize /:\zs<CR>
-    vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
-
 """"""""""""""""""""""""""""""""""""""""
 " Easy motion
 """""""""""""""""""""""""""""""""""""""
@@ -59,7 +43,7 @@ Bundle 'Lokaltog/vim-easymotion'
 
 """"""""""""""""""""""""""""""""""""""""""""
 " Marks
-" """""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""
 Bundle 'kshenoy/vim-signature'
 map <Leader>m :SignatureToggle<CR>
 
@@ -73,14 +57,12 @@ map <Leader>m :SignatureToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Javascript 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 Bundle 'pangloss/vim-javascript'
 
-let g:javascript_conceal = 1
+let g:javascript_conceal = 0
 
 hi Conceal ctermfg=Yellow ctermbg=black
-set conceallevel=1
+set conceallevel=0
 
 
 let g:javascript_conceal_function   = "ƒ"
@@ -98,8 +80,6 @@ let g:javascript_conceal_super      = "Ω"
 "Bundle 'jelera/vim-javascript-syntax'
 "au FileType javascript call JavaScriptFold() 
 
-
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerd commenter
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,10 +112,6 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-
-"Plugin 'bling/vim-bufferline'
-"let g:bufferline_rotate = 0
-"let g:bufferline_fixed_index =  0 "always first
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OpenCL Syntax
@@ -204,31 +180,62 @@ Bundle 'jeetsukumaran/vim-buffergator'
 
  """""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar // Not in use
-""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'majutsushi/tagbar'
-"nmap <F8> :TagbarToggle<CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'sjl/gundo.vim'
 let g:gundo_preview_bottom=1
-nnoremap <F5> :GundoToggle<CR>
+nmap <leader>g :GundoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make vim play nicely with TMUX
 """""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'sjl/vitality.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Relative numbers
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Bundle 'myusuf3/numbers.vim'
-"autocmd FocusLost * call NumbersToggle<CR>
-"autocmd BufLeave * call NumbersToggle<CR>
+if exists("+relativenumber")
+  if v:version >= 400
+    set number
+  endif
+  set relativenumber  " show relative line numbers
+  set numberwidth=3   " narrow number column
+  " cycles between relative / absolute / no numbering
+  if v:version >= 400
+    function! RelativeNumberToggle()
+      if (&number == 1 && &relativenumber == 1)
+        set nonumber
+        set relativenumber relativenumber?
+      elseif (&number == 0 && &relativenumber == 1)
+        set norelativenumber
+        set number number?
+      elseif (&number == 1 && &relativenumber == 0)
+        set norelativenumber
+        set nonumber number?
+      else
+        set number
+        set relativenumber relativenumber?
+      endif
+    endfunc
+  else
+    function! RelativeNumberToggle()
+      if (&relativenumber == 1)
+        set number number?
+      elseif (&number == 1)
+        set nonumber number?
+      else
+        set relativenumber relativenumber?
+      endif
+    endfunc
+  endif
+  nnoremap <silent> <leader>n :call RelativeNumberToggle()<CR>
+else                  " fallback
+  set number          " show line numbers
+  " inverts numbering
+  nnoremap <silent> <leader>n :set number! number?<CR>
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -347,10 +354,6 @@ augroup END
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
 
 set ignorecase
 set smartcase
