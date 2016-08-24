@@ -7,7 +7,7 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/padentomasello/.gitignore_global
+	excludesfile = /Users/paden/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

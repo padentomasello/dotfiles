@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/Users/padentomasello/anaconda2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/paden/anaconda2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -87,5 +87,5 @@ export EDITOR='vim'
 
 source ~/.bin/tmuxinator.zsh
 
-export NVM_DIR="/Users/padentomasello/.nvm"
+export NVM_DIR="/Users/paden/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
