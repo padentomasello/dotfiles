@@ -76,6 +76,18 @@ Bundle 'airblade/vim-gitgutter'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'Valloric/YouCompleteMe'
 
+Bundle "marijnh/tern_for_vim"
+
+" YouCompleteMe Options
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Tern Shortcuts
+nmap <silent> <Leader>d :TernDef<CR>
+nmap <silent> <Leader>r :TernRename<CR>
+nmap <silent> <Leader>s :TernRefs<CR>
+nmap <silent> <Leader>t :TernType<CR>
+let g:tern_show_signature_in_pum = 1
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Javascript 
