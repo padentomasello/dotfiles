@@ -159,8 +159,10 @@ nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>g- :Silent Git stash<CR>:e<CR>
-nnoremap <Leader>g+ :Silent Git stash pop<CR>:e<CR>
+
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+nnoremap <Leader>g- :Silent Git stash<CR>
+nnoremap <Leader>g+ :Silent Git stash pop<CR>
 
 "let g:ycm_autoclose_preview_window_after_completion = 1
 
