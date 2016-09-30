@@ -143,7 +143,7 @@ let mapleader=','
 map <Leader>m :SignatureToggle<CR>
 
 
-"nmap <leader>gv :Gitv --all<cr> :unmap <buffer> o
+nmap <leader>gv :Gitv --all<cr> jjjjjjjj
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 
