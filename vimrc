@@ -1,101 +1,118 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Install vim-plug if we don't already have it
+if empty(glob("~/.vim/autoload/plug.vim"))
+    " Ensure all needed directories exist  (Thanks @kapadiamush)
+    execute 'mkdir -p ~/.vim/plugged'
+    execute 'mkdir -p ~/.vim/autoload'
+    " Download the actual plugin manager
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""" Buffer Stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'kien/ctrlp.vim'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colorschemes
+Plug 'captbaritone/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'fxn/vim-monochrome'
+Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'freeo/vim-kalisi'
+"Plug 'terryma/vim-multiple-cursors'
+
+
+Plug 'AndrewRadev/splitjoin.vim'
+
+" File Finder
+Plug 'ctrlpvim/ctrlp.vim'
+
 " OpenCL Syntax
-Plugin 'petRushka/vim-opencl'
+Plug 'petRushka/vim-opencl'
+
+Plug 'Lokaltog/vim-easymotion'
 
 " Syntax Checking
-Plugin 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 
-""""""""""""""""""""""""""""""""""""""""
-" Easy motion
-"""""""""""""""""""""""""""""""""""""""
-Plugin 'Lokaltog/vim-easymotion'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Nerd commenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'scrooloose/nerdcommenter'
 
-""""""""""""""""""""""""""""""""""""""""""""
-" Marks
-"""""""""""""""""""""""""""""""""""""""""
-Plugin 'kshenoy/vim-signature'
-"""""""""""""""""""""""""""""""""""""""""
-" Git
-" """"""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'christoomey/vim-conflicted'
-Plugin 'gregsexton/gitv'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autocomplete
-" """"""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'Valloric/YouCompleteMe'
+""""""""""""""""""""""""""""""""""""""""""
+"" Git
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-conflicted'
+Plug 'gregsexton/gitv'
+Plug 'junegunn/vim-github-dashboard'
 
-"Plugin "marijnh/tern_for_vim"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+let g:github_dashboard = {
+\ 'username': 'padentomasello',
+\ 'password': $GITHUB_TOKEN
+\ }
+""""""""""
+""""""" Markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Autocomplete
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+let g:python_host_prog = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-"Plugin 'othree/yajs.vim'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerd commenter
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 
-Plugin 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mkitt/tabline.vim'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'mkitt/tabline.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Sessions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Plug 'xolox/vim-session'
+
+"Plug 'xolox/vim-misc'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sessions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'xolox/vim-session'
-
-Plugin 'xolox/vim-misc'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""
 """"""""""" Some nice key mappings
 """"""""""""""""""""""""""""""
-Plugin 'tpope/vim-unimpaired.git'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 "
-"""""""""""""""""""
-" Mapping
-"""""""""""""""""""""""
-Plugin 'takac/vim-hardtime'
 
-Plugin 'morhetz/gruvbox'
+"""""""""""""""""""""""""""""""""""""""""""""
+"" Marks
+""""""""""""""""""""""""""""""""""""""""""
+Plug 'kshenoy/vim-signature'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Whitespace
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'ntpeters/vim-better-whitespace'
+set t_Co=256
+" in case t_Co alone doesn't work, add this as well:
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""indent guide
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'nathanaelkane/vim-indent-guides'
-
-call vundle#end()            " required
-filetype plugin indent on
+filetype plugin indent on                   " required!
+call plug#end()
 
 set mouse=a
 syntax on
@@ -108,9 +125,61 @@ set expandtab " Inset space characters for tab
 set tabstop=4
 set shiftwidth=4
 set showbreak=↪  " Line wrap
-"set foldmethod=syntax
-"set foldnestmax=3
+set foldmethod=syntax
+set foldnestmax=3
 set lazyredraw
+set relativenumber
+set number
+set wildmenu
+set scrolloff=5
+set sidescrolloff=5
+set autoread
+
+let g:airline_mode_map = {
+\ '__' : '-',
+\ 'n'  : 'N',
+\ 'i'  : 'I',
+\ 'R'  : 'R',
+\ 'c'  : 'C',
+\ 'v'  : 'V',
+\ 'V'  : 'V',
+\ '' : 'V',
+\ 's'  : 'S',
+\ 'S'  : 'S',
+\ '' : 'S',
+\ }
+let g:airline_powerline_fonts=0
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 
 "" Take this off
@@ -120,22 +189,9 @@ set lazyredraw
 "specific filetype
 au BufRead,BufNewFile *.cl setfiletype c
 
-let g:Gitv_TruncateCommitSubjects = 1
-
-
-
-
-""Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-""If you're using tmux version 2.2 or later, remove the outermost $TMUX check.
-""For Neovim 0.1.3 and 0.1.4
-"if (has("nvim"))
-    "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    "set termguicolors
-"endif
-
-let &t_8f="\e[38;2;%ld;%ld;%ldm"
-let &t_8b="\e[48;2;%ld;%ld;%ldm"
-set termguicolors
+colorscheme kalisi
+set background=dark
+let g:airline_theme='kalisi'
 
 
 let mapleader=','
@@ -143,9 +199,12 @@ let mapleader=','
 map <Leader>m :SignatureToggle<CR>
 
 
-nmap <leader>gv :Gitv --all<cr> jjjjjjjj
+let g:Gitv_TruncateCommitSubjects = 0
+let g:Gitv_OpenHorizontal = 1
+nmap <leader>gv :Gitv <cr>
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
 nnoremap <Leader>gs :Gstatus<CR>
@@ -193,9 +252,9 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -203,12 +262,15 @@ let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow
 set splitright
-
+"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+"set wildignore+=*/nodemodule/*,.*git
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|www'
 " Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/](\.(git)|\_site|\/var)$',
+  "\ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+"\}
+
 
 "" Use the nearest .git directory as the cwd
 "" This makes a lot of sense if you are working on a project that is in version
@@ -234,24 +296,14 @@ nmap <leader>u :GundoToggle<CR>
 "" Color
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""if &diff
-  ""colorscheme github
-""endif
+"if &diff
+  "colorscheme github
+"endif
 ""
 "let g:indent_guides_start_level=2
-
-
-
-set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_improved_strings=0
-let g:gruvbox_improved_warnings=0
-colorscheme gruvbox
-
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+	    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+	    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -270,48 +322,20 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
-function! TrimWhiteSpace()
-%s/\s\+$//e
-endfunction
-
-map <leader>w :ToggleWhitespace<ENTER>
-map <leader>W :StripWhitespace<ENTER>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Long line highlight
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-autocmd BufEnter * 2match OverLength /\%102v.*/
-autocmd BufEnter * let w:long_line_match = 1
-
-fu! LongLineHighlightToggle()
-        highlight OverLength ctermbg=darkgrey guibg=#592929
-        if exists('w:long_line_match')
-                2match OverLength //
-                unlet w:long_line_match
-        else
-                2match OverLength /\%92v.*/
-                let w:long_line_match = 1
-        endif
-endfunction
-
-map <Leader>l :call LongLineHighlightToggle()<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Make sure Vim returns to the same line when you reopen a file.
 "" Thanks, Amit
 augroup line_return
     au!
     au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\     execute 'normal! g`"zvzz' |
+	\ endif
 augroup END
 
 "" Split line (sister to [J]oin lines)
 "" The normal use of S is covered by cc, so don't worry about shadowing it.
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+"nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
 
 "noremap <leader><leader>vimrc :tabe $MYVIMRC<cr>
@@ -343,9 +367,3 @@ set incsearch
 set showmatch
 set hlsearch
 set gdefault
-
-noremap H ^
-noremap L $
-vnoremap L g_
-nnoremap gI `.
-
