@@ -28,6 +28,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 " OpenCL Syntax
 Plug 'petRushka/vim-opencl'
 
+" Python folding
+Plug 'tmhedberg/SimpylFold'
+
 Plug 'Lokaltog/vim-easymotion'
 
 " Syntax Checking
