@@ -17,16 +17,9 @@ Plug 'fxn/vim-monochrome'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'freeo/vim-kalisi'
-"Plug 'terryma/vim-multiple-cursors'
-
-
-Plug 'AndrewRadev/splitjoin.vim'
 
 " File Finder
 Plug 'ctrlpvim/ctrlp.vim'
-
-" OpenCL Syntax
-Plug 'petRushka/vim-opencl'
 
 " Python folding
 Plug 'tmhedberg/SimpylFold'
@@ -34,7 +27,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Lokaltog/vim-easymotion'
 
 " Syntax Checking
-"Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Nerd commenter
@@ -47,37 +40,12 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-conflicted'
-Plug 'gregsexton/gitv'
-Plug 'junegunn/vim-github-dashboard'
-
-let g:github_dashboard = {
-\ 'username': 'padentomasello',
-\ 'password': $GITHUB_TOKEN
-\ }
-""""""""""
-""""""" Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Autocomplete
 "" """"""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ervandew/supertab'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-
-let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
 Plug 'scrooloose/nerdtree'
 
 Plug 'vim-airline/vim-airline'
@@ -197,67 +165,40 @@ set background=dark
 let g:airline_theme='kalisi'
 
 
-let mapleader=','
-
 map <Leader>m :SignatureToggle<CR>
 
 
-let g:Gitv_TruncateCommitSubjects = 0
-let g:Gitv_OpenHorizontal = 1
-nmap <leader>gv :Gitv <cr>
-nmap <leader>gV :Gitv! --all<cr>
-vmap <leader>gV :Gitv! --all<cr>
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"let g:Gitv_TruncateCommitSubjects = 0
+"let g:Gitv_OpenHorizontal = 1
+"nmap <leader>gv :Gitv <cr>
+"nmap <leader>gV :Gitv! --all<cr>
+"vmap <leader>gV :Gitv! --all<cr>
+""set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
-nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
-nnoremap <Leader>gl2 :exe ':!cd ' . expand('%:p:h') . '; git lg'<CR>
-nnoremap <Leader>gh :Glog<CR>
-nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>gp :Git push<CR>
+"nnoremap <Leader>gs :Gstatus<CR>
+"nnoremap <Leader>gd :Gdiff<CR>
+"nnoremap <Leader>gb :Gblame<CR>
+"nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
+"nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
+"nnoremap <Leader>gl2 :exe ':!cd ' . expand('%:p:h') . '; git lg'<CR>
+"nnoremap <Leader>gh :Glog<CR>
+"nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
+"nnoremap <Leader>gr :Gread<CR>
+"nnoremap <Leader>gw :Gwrite<CR>
+"nnoremap <Leader>gp :Git push<CR>
 
-command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-nnoremap <Leader>g- :Silent Git stash<CR>
-nnoremap <Leader>g+ :Silent Git stash pop<CR>
+"command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+"nnoremap <Leader>g- :Silent Git stash<CR>
+"nnoremap <Leader>g+ :Silent Git stash pop<CR>
 
 "let g:ycm_autoclose_preview_window_after_completion = 1
-
-" Tern Shortcuts
-nmap <silent> <Leader>td :TernDef<CR>
-nmap <silent> <Leader>tr :TernRename<CR>
-nmap <silent> <Leader>ts :TernRefs<CR>
-nmap <silent> <Leader>tt :TernType<CR>
-let g:tern_show_signature_in_pum = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Javascript
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""Plugin 'mxw/vim-jsx'
-
-
-"set foldmethod=syntax
-
-""Other syntax
-"au FileType javascript call JavaScriptFold()
 
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -299,15 +240,6 @@ nmap <leader>u :GundoToggle<CR>
 "" Color
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"if &diff
-  "colorscheme github
-"endif
-""
-"let g:indent_guides_start_level=2
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-	    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-	    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
  "Show trailing whitespace:
@@ -335,34 +267,6 @@ augroup line_return
 	\     execute 'normal! g`"zvzz' |
 	\ endif
 augroup END
-
-"" Split line (sister to [J]oin lines)
-"" The normal use of S is covered by cc, so don't worry about shadowing it.
-"nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-
-"noremap <leader><leader>vimrc :tabe $MYVIMRC<cr>
-"autocmd bufwritepost .vimrc source $MYVIMRC
-
-"Quick exit "
-inoremap jk <esc>
-" Training "
-inoremap <esc> <nop>
-
-"set pastetoggle=<leader>p
-
-nnoremap Q @q
-vnoremap Q :norm @q<cr>
-
-"" Create new files in same directory
-noremap <leader>ne :e <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>nt :tabe <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>ns :split <C-R>=expand("%:p:h") . "/" <CR>
-
-noremap <leader>q :q<cr>
-
-nnoremap <leader>s :w<cr>
-inoremap <leader>s <C-c>:w<cr>
 
 set ignorecase
 set smartcase
