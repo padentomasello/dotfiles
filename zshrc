@@ -84,12 +84,9 @@ source $ZSH/oh-my-zsh.sh
 #
 export EDITOR='vim'
 
-export NVM_DIR="/Users/paden/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 #export MXNET_CUDNN_AUTOTUNE_DEFAULT=2
-#export LD_LIBRARY_PATH=/mnt/gluster/opt/opencv/lib:/mnt/gluster/opt/cuda/lib64:/mnt/gluster/opt/mkl/lib/
-#export PATH=/mnt/gluster/opt/anaconda3/bin:$PATH
-#export PYTHONPATH=$(pwd)/mxnet_util:$PYTHONPATH
+export LD_LIBRARY_PATH=/mnt/gluster/opt/opencv/lib:/mnt/gluster/opt/cuda/lib64:/mnt/gluster/opt/mkl/lib/
+export PATH=/mnt/gluster/opt/anaconda3/bin:$PATH
+export PYTHONPATH=~/mxnet_training
 
-#export PYTHONPATH=/mnt/gluster/opt/mxnet//python
-#export PYTHONPATH=/home/paden/mxnet//python

@@ -17,6 +17,7 @@ Plug 'fxn/vim-monochrome'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'freeo/vim-kalisi'
+Plug 'morhetz/gruvbox'
 
 " File Finder
 Plug 'ctrlpvim/ctrlp.vim'
@@ -26,8 +27,23 @@ Plug 'tmhedberg/SimpylFold'
 
 Plug 'Lokaltog/vim-easymotion'
 
+Plug 'takac/vim-hardtime'
+let g:hardtime_maxcount = 2
+let g:hardtime_default_on = 1
+
 " Syntax Checking
+Plug 'Valloric/YouCompleteMe'
+let g:ycm_python_binary_path = '/mnt/gluster/opt/anaconda3/bin/python'
+
 Plug 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Nerd commenter
@@ -160,9 +176,9 @@ let g:airline_symbols.linenr = ''
 "specific filetype
 au BufRead,BufNewFile *.cl setfiletype c
 
-colorscheme kalisi
+colorscheme gruvbox
 set background=dark
-let g:airline_theme='kalisi'
+let g:airline_theme='gruvbox'
 
 
 map <Leader>m :SignatureToggle<CR>
