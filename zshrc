@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/mnt/gluster/paden/.oh-my-zsh
+export ZSH=/mnt/nfs/home/paden/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -86,7 +86,7 @@ export EDITOR='vim'
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 #export MXNET_CUDNN_AUTOTUNE_DEFAULT=2
-export LD_LIBRARY_PATH=/mnt/gluster/opt/opencv/lib:/mnt/gluster/opt/cuda/lib64:/mnt/gluster/opt/mkl/lib/
-export PATH=/mnt/gluster/opt/anaconda3/bin:$PATH
+export LD_LIBRARY_PATH=/mnt/nfs/opt/opencv/lib:/mnt/nfs/opt/cuda/lib64:/mnt/nfs/opt/mkl/lib/
+export PATH=/mnt/nfs/opt/anaconda3/bin:$PATH
 export PYTHONPATH=~/mxnet_training
 

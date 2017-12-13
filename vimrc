@@ -30,20 +30,25 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'takac/vim-hardtime'
 let g:hardtime_maxcount = 2
 let g:hardtime_default_on = 1
-
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'justinmk/vim-sneak'
+"Plug 'majutsushi/tagbar'
+"Plug 'unblevable/quick-scope'
+let g:sneak#label = 1
 " Syntax Checking
 Plug 'Valloric/YouCompleteMe'
-let g:ycm_python_binary_path = '/mnt/gluster/opt/anaconda3/bin/python'
+let g:ycm_python_binary_path = '/mnt/nfs/opt/anaconda3/bin/python'
+let g:syntastic_python_checkers = ['flake8']
 
 Plug 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Nerd commenter
@@ -121,6 +126,8 @@ set wildmenu
 set scrolloff=5
 set sidescrolloff=5
 set autoread
+"set clipboard=unnamed,unnamedplus
+set clipboard=unnamed
 
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -192,21 +199,21 @@ map <Leader>m :SignatureToggle<CR>
 ""set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
-"nnoremap <Leader>gs :Gstatus<CR>
-"nnoremap <Leader>gd :Gdiff<CR>
-"nnoremap <Leader>gb :Gblame<CR>
-"nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
-"nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
-"nnoremap <Leader>gl2 :exe ':!cd ' . expand('%:p:h') . '; git lg'<CR>
-"nnoremap <Leader>gh :Glog<CR>
-"nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
-"nnoremap <Leader>gr :Gread<CR>
-"nnoremap <Leader>gw :Gwrite<CR>
-"nnoremap <Leader>gp :Git push<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
+nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
+nnoremap <Leader>gl2 :exe ':!cd ' . expand('%:p:h') . '; git lg'<CR>
+nnoremap <Leader>gh :Glog<CR>
+nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gp :Git push<CR>
 
-"command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-"nnoremap <Leader>g- :Silent Git stash<CR>
-"nnoremap <Leader>g+ :Silent Git stash pop<CR>
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+nnoremap <Leader>g- :Silent Git stash<CR>
+nnoremap <Leader>g+ :Silent Git stash pop<CR>
 
 "let g:ycm_autoclose_preview_window_after_completion = 1
 
