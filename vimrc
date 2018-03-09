@@ -23,27 +23,48 @@ Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Python folding
-Plug 'tmhedberg/SimpylFold'
+"Plug 'tmhedberg/SimpylFold'
 
 Plug 'Lokaltog/vim-easymotion'
 
 Plug 'takac/vim-hardtime'
-let g:hardtime_maxcount = 2
-let g:hardtime_default_on = 1
-Plug 'Vimjas/vim-python-pep8-indent'
+"let g:hardtime_maxcount = 1
+"let g:hardtime_default_on = 1
+"Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'justinmk/vim-sneak'
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 "Plug 'unblevable/quick-scope'
 let g:sneak#label = 1
 " Syntax Checking
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_python_binary_path = '/mnt/nfs/opt/anaconda3/bin/python'
-let g:syntastic_python_checkers = ['flake8']
+"
 
-Plug 'vim-syntastic/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"if has('nvim')
+	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+	"Plug 'Shougo/deoplete.nvim'
+	"Plug 'roxma/nvim-yarp'
+	"Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
+"Plug 'zchee/deoplete-clang'
+
+"let g:deoplete#sources#clang#libclang_path="/Users/padentomasello/deepscale/ARM/dsvm/deps/ndk/lib64/libclang.dylib"
+"let g:deoplete#sources#clang#clang_header="/Users/padentomasello/deepscale/ARM/dsvm/deps/ndk/bin/"
+
+"Plug 'neomake/neomake'
+" When writing a buffer.
+"Plug 'Valloric/YouCompleteMe'
+"let g:ycm_python_binary_path = '/mnt/nfs/opt/anaconda3/bin/python'
+"let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_cpp_checkers = ['gcc']
+"let g:syntastic_cpp_compiler = 'g++'
+"let g:syntastic_cpp_compiler_options = "-std=c++11 -stdlib=libc++ -Wall -Wextra -Wpedantic"
+
+"Plug 'vim-syntastic/syntastic'
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
@@ -106,6 +127,7 @@ let &t_AF="\e[38;5;%dm"
 filetype plugin indent on                   " required!
 call plug#end()
 
+
 set mouse=a
 syntax on
 syntax enable
@@ -114,8 +136,8 @@ set ls=2 " Show status line even with only one window is show
 set bs=2
 set number
 set expandtab " Inset space characters for tab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set showbreak=↪  " Line wrap
 set foldmethod=syntax
 set foldnestmax=3
@@ -126,8 +148,8 @@ set wildmenu
 set scrolloff=5
 set sidescrolloff=5
 set autoread
-"set clipboard=unnamed,unnamedplus
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
+"set clipboard=unnamed
 
 let g:airline_mode_map = {
 \ '__' : '-',
