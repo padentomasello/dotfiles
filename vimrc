@@ -1,7 +1,7 @@
 if filereadable($LOCAL_ADMIN_SCRIPTS . "/master.vimrc")
   source $LOCAL_ADMIN_SCRIPTS/master.vimrc
   source $LOCAL_ADMIN_SCRIPTS/vim/biggrep.vim
-else
+elseif filereadable($ADMIN_SCRIPTS)
   source $ADMIN_SCRIPTS/master.vimrc
   source $ADMIN_SCRIPTS/vim/biggrep.vim
 endif
@@ -53,6 +53,7 @@ Plug 'scrooloose/nerdcommenter'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Autocomplete
 "" """"""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'valloric/youcompleteme'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'scrooloose/nerdtree'
@@ -102,11 +103,11 @@ call plug#end()
 "set ruler
 "set ls=2 " Show status line even with only one window is show
 "set bs=2
-"set expandtab " Inset space characters for tab
-"set tabstop=4
-"set softtabstop=4
-"set shiftwidth=4
-"set autoindent
+set expandtab " Inset space characters for tab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set autoindent
 set showbreak=↪  " Line wrap
 "set foldmethod=syntax
 "set foldnestmax=3
