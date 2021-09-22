@@ -46,9 +46,9 @@ Plug 'scrooloose/nerdcommenter'
 """"""""""""""""""""""""""""""""""""""""""
 "" Git
 "" """"""""""""""""""""""""""""""""""""""""""""""""""""
-"Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-git', { 'for': 'git' }
-"Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'airblade/vim-gitgutter'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Autocomplete

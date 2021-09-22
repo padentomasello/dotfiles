@@ -90,3 +90,19 @@ export LD_LIBRARY_PATH=/mnt/nfs/opt/opencv/lib:/mnt/nfs/opt/cuda/lib64:/mnt/nfs/
 export PATH=/mnt/nfs/opt/anaconda3/bin:$PATH
 export PYTHONPATH=~/mxnet_training
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/public/apps/anaconda3/2021.05/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/public/apps/anaconda3/2021.05/etc/profile.d/conda.sh" ]; then
+        . "/public/apps/anaconda3/2021.05/etc/profile.d/conda.sh"
+    else
+        export PATH="/public/apps/anaconda3/2021.05/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
